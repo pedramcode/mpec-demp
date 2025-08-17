@@ -9,8 +9,8 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import AnswerService from './answer.service';
-import { CreateAnswerDto, UpdateAnswerDto } from './dto/answer.dto';
+import AnswerService from '../services/answer.service';
+import { CreateAnswerDto, UpdateAnswerDto } from '../dto/answer.dto';
 
 @Controller('answers')
 export class AnswerController {

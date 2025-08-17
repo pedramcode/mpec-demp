@@ -9,8 +9,8 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import CourseService from './course.service';
-import { CreateCourseDto, UpdateCourseDto } from './dto/course.dto';
+import CourseService from '../services/course.service';
+import { CreateCourseDto, UpdateCourseDto } from '../dto/course.dto';
 
 @Controller('courses')
 export class CourseController {

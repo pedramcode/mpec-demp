@@ -9,8 +9,8 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import ExampleService from './example.service';
-import { CreateExampleDto, UpdateExampleDto } from './dto/example.dto';
+import ExampleService from '../services/example.service';
+import { CreateExampleDto, UpdateExampleDto } from '../dto/example.dto';
 
 @Controller('examples')
 export class ExampleController {

@@ -1,11 +1,11 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
-import { PATTERNTEMPLATE_REPOSITORY } from './tokens';
+import { PATTERNTEMPLATE_REPOSITORY } from '../tokens';
 import { Repository } from 'typeorm';
-import { PatternTemplate } from './entities/patternTemplate.entity';
+import { PatternTemplate } from '../entities/patternTemplate.entity';
 import {
   CreatePatternTemplateDto,
   UpdatePatternTemplateDto,
-} from './dto/patternTemplate.dto';
+} from '../dto/patternTemplate.dto';
 import { validateOrReject } from 'class-validator';
 
 @Injectable()

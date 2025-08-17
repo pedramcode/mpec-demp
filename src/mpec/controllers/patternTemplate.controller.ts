@@ -9,11 +9,11 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import PatternTemplateService from './patternTemplate.service';
+import PatternTemplateService from '../services/patternTemplate.service';
 import {
   CreatePatternTemplateDto,
   UpdatePatternTemplateDto,
-} from './dto/patternTemplate.dto';
+} from '../dto/patternTemplate.dto';
 
 @Controller('pattern-templates')
 export class PatternTemplateController {
