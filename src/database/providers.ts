@@ -8,7 +8,11 @@ export const databaseProviders = [
     useFactory: async (config: ConfigService) => {
       const dataSource = new DataSource({
         type: 'postgres',
-        url: config.get('POSTGRES_URI'),
+        host: config.get('DATABASE_HOST'),
+        port: config.get('DATABASE_PORT'),
+        database: config.get('DATABASE_NAME'),
+        username: config.get('DATABASE_USERNAME'),
+        password: config.get('DATABASE_PASSWORD'),
         entities: [__dirname + '/../**/*.entity{.ts,.js}'],
         synchronize: true,
       });

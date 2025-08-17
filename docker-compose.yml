@@ -1,4 +1,27 @@
 services:
+  mpec:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: mpec-service
+    restart: on-failure
+    environment:
+      - NODE_ENV=development
+      - DATABASE_HOST=postgres
+      - DATABASE_PORT=5432
+      - DATABASE_NAME=${POSTGRES_DB}
+      - DATABASE_USERNAME=${POSTGRES_USER}
+      - DATABASE_PASSWORD=${POSTGRES_PASSWORD}
+      - PORT=3000
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres
+    networks:
+      - mpec_net
+
   postgres:
     image: postgres:16-alpine
     container_name: mpec-postgres
@@ -23,11 +46,14 @@ services:
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
     ports:
       - 5440:80
+    depends_on:
+      - postgres
     networks:
       - mpec_net
 
 networks:
   mpec_net:
+    driver: bridge
 
 volumes:
   mpec_pgdata:
