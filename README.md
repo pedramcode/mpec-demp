@@ -35,3 +35,7 @@ Then run following command:
 ```bash
 docker compose up --build
 ```
+
+## ERD
+
+![ERD](./erd.png)
