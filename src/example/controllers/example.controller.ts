@@ -6,18 +6,19 @@ import {
   Delete,
   Param,
   Body,
-  UsePipes,
-  ValidationPipe,
 } from '@nestjs/common';
 import ExampleService from '../services/example.service';
-import { CreateExampleDto, UpdateExampleDto } from '../dto/example.dto';
+import {
+  CreateExampleDto,
+  SolveTestQuestionDto,
+  UpdateExampleDto,
+} from '../dto/example.dto';
 
 @Controller('examples')
 export class ExampleController {
   constructor(private readonly exampleService: ExampleService) {}
 
   @Post()
-  @UsePipes(new ValidationPipe({ whitelist: true }))
   create(@Body() dto: CreateExampleDto) {
     return this.exampleService.create(dto);
   }
@@ -33,7 +34,6 @@ export class ExampleController {
   }
 
   @Put(':id')
-  @UsePipes(new ValidationPipe({ whitelist: true }))
   update(@Param('id') id: string, @Body() dto: UpdateExampleDto) {
     return this.exampleService.update(id, dto);
   }
@@ -41,5 +41,10 @@ export class ExampleController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.exampleService.remove(id);
+  }
+
+  @Post('/solve-test-question')
+  solveTestQuestion(@Body() dto: SolveTestQuestionDto) {
+    return this.exampleService.solveTestQuestion(dto);
   }
 }

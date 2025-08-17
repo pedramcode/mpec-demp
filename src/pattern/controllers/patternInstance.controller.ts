@@ -6,8 +6,6 @@ import {
   Delete,
   Param,
   Body,
-  UsePipes,
-  ValidationPipe,
 } from '@nestjs/common';
 import PatternInstanceService from '../services/patternInstance.service';
 import {
@@ -22,7 +20,6 @@ export class PatternInstanceController {
   ) {}
 
   @Post()
-  @UsePipes(new ValidationPipe({ whitelist: true }))
   create(@Body() dto: CreatePatternInstanceDto) {
     return this.patternInstanceService.create(dto);
   }
@@ -38,7 +35,6 @@ export class PatternInstanceController {
   }
 
   @Put(':id')
-  @UsePipes(new ValidationPipe({ whitelist: true }))
   update(@Param('id') id: string, @Body() dto: UpdatePatternInstanceDto) {
     return this.patternInstanceService.update(id, dto);
   }

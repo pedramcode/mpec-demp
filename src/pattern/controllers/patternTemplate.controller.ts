@@ -6,11 +6,10 @@ import {
   Delete,
   Param,
   Body,
-  UsePipes,
-  ValidationPipe,
 } from '@nestjs/common';
 import PatternTemplateService from '../services/patternTemplate.service';
 import {
+  applyPatternToExampleDto,
   CreatePatternTemplateDto,
   UpdatePatternTemplateDto,
 } from '../dto/patternTemplate.dto';
@@ -22,7 +21,6 @@ export class PatternTemplateController {
   ) {}
 
   @Post()
-  @UsePipes(new ValidationPipe({ whitelist: true }))
   create(@Body() dto: CreatePatternTemplateDto) {
     return this.patternTemplateService.create(dto);
   }
@@ -38,7 +36,6 @@ export class PatternTemplateController {
   }
 
   @Put(':id')
-  @UsePipes(new ValidationPipe({ whitelist: true }))
   update(@Param('id') id: string, @Body() dto: UpdatePatternTemplateDto) {
     return this.patternTemplateService.update(id, dto);
   }
@@ -46,5 +43,10 @@ export class PatternTemplateController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.patternTemplateService.remove(id);
+  }
+
+  @Post('/apply-pattern-to-example')
+  async applyPatternToExample(@Body() dto: applyPatternToExampleDto) {
+    return this.patternTemplateService.applyPatternToExample(dto);
   }
 }

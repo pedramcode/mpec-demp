@@ -6,8 +6,6 @@ import {
   Delete,
   Param,
   Body,
-  UsePipes,
-  ValidationPipe,
 } from '@nestjs/common';
 import AnswerService from '../services/answer.service';
 import { CreateAnswerDto, UpdateAnswerDto } from '../dto/answer.dto';
@@ -17,7 +15,6 @@ export class AnswerController {
   constructor(private readonly answerService: AnswerService) {}
 
   @Post()
-  @UsePipes(new ValidationPipe({ whitelist: true }))
   create(@Body() dto: CreateAnswerDto) {
     return this.answerService.create(dto);
   }
@@ -33,7 +30,6 @@ export class AnswerController {
   }
 
   @Put(':id')
-  @UsePipes(new ValidationPipe({ whitelist: true }))
   update(@Param('id') id: string, @Body() dto: UpdateAnswerDto) {
     return this.answerService.update(id, dto);
   }

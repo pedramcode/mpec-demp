@@ -2,7 +2,6 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Answer } from '../entities/answer.entity';
 import { CreateAnswerDto, UpdateAnswerDto } from '../dto/answer.dto';
-import { validateOrReject } from 'class-validator';
 import { ANSWER_REPOSITORY } from 'src/tokens';
 
 @Injectable()
@@ -13,7 +12,6 @@ export default class AnswerService {
   ) {}
 
   async create(createAnswerDto: CreateAnswerDto): Promise<Answer> {
-    await validateOrReject(createAnswerDto);
     const answer = this.answerRepository.create(createAnswerDto);
     return await this.answerRepository.save(answer);
   }
@@ -29,7 +27,6 @@ export default class AnswerService {
   }
 
   async update(id: string, updateAnswerDto: UpdateAnswerDto): Promise<Answer> {
-    await validateOrReject(updateAnswerDto);
     const answer = await this.findOne(id);
     Object.assign(answer, updateAnswerDto);
     return await this.answerRepository.save(answer);

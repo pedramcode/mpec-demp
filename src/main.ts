@@ -2,10 +2,20 @@ import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 import { AppModule } from './app.module';
+import { ValidationPipe } from '@nestjs/common';
+import { CustomExceptionsFilter } from './exceptionFilter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('/api');
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      forbidUnknownValues: false,
+    }),
+  );
+
+  app.useGlobalFilters(new CustomExceptionsFilter());
 
   const config = new DocumentBuilder()
     .setTitle('MPEC Service (Demo)')

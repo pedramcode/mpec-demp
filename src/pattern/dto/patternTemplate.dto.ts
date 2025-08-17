@@ -40,3 +40,27 @@ export class UpdatePatternTemplateDto {
   @IsString()
   courseId?: string;
 }
+
+export class applyPatternToExampleDto {
+  @ApiProperty()
+  @IsString()
+  patternTemplateId: string;
+
+  @ApiProperty()
+  @IsString()
+  exampleContent: string;
+}
+
+export class applyPatternToExampleResponseDto {
+  @ApiProperty()
+  @IsString()
+  exampleId: string;
+
+  @ApiProperty()
+  @IsString()
+  patternInstanceId: string;
+
+  @ApiProperty()
+  @IsObject()
+  result: object;
+}

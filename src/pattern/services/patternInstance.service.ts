@@ -5,7 +5,6 @@ import {
   CreatePatternInstanceDto,
   UpdatePatternInstanceDto,
 } from '../dto/patternInstance.dto';
-import { validateOrReject } from 'class-validator';
 import { PATTERNINSTANCE_REPOSITORY } from 'src/tokens';
 
 @Injectable()
@@ -18,7 +17,6 @@ export default class PatternInstanceService {
   async create(
     createPatternInstanceDto: CreatePatternInstanceDto,
   ): Promise<PatternInstance> {
-    await validateOrReject(createPatternInstanceDto);
     const instance = this.patternInstanceRepository.create(
       createPatternInstanceDto,
     );
@@ -41,7 +39,6 @@ export default class PatternInstanceService {
     id: string,
     updatePatternInstanceDto: UpdatePatternInstanceDto,
   ): Promise<PatternInstance> {
-    await validateOrReject(updatePatternInstanceDto);
     const instance = await this.findOne(id);
     Object.assign(instance, updatePatternInstanceDto);
     return await this.patternInstanceRepository.save(instance);

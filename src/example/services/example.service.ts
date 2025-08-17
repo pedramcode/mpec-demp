@@ -1,19 +1,35 @@
-import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  forwardRef,
+  Inject,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { Example } from '../entities/example.entity';
-import { CreateExampleDto, UpdateExampleDto } from '../dto/example.dto';
-import { validateOrReject } from 'class-validator';
+import { Example, ExampleType } from '../entities/example.entity';
+import {
+  CreateExampleDto,
+  SolveTestQuestionDto,
+  SolveTestQuestionResponseDto,
+  UpdateExampleDto,
+} from '../dto/example.dto';
 import { EXAMPLE_REPOSITORY } from 'src/tokens';
+import PatternTemplateService from 'src/pattern/services/patternTemplate.service';
+import { AiService } from 'src/ai/ai.service';
+import PatternInstanceService from 'src/pattern/services/patternInstance.service';
 
 @Injectable()
 export default class ExampleService {
   constructor(
     @Inject(EXAMPLE_REPOSITORY)
     private readonly exampleRepository: Repository<Example>,
+    @Inject(forwardRef(() => PatternTemplateService))
+    private readonly patternTemplateService: PatternTemplateService,
+    @Inject(forwardRef(() => PatternInstanceService))
+    private readonly patternInstanceService: PatternInstanceService,
+    private readonly aiService: AiService,
   ) {}
 
   async create(createExampleDto: CreateExampleDto): Promise<Example> {
-    await validateOrReject(createExampleDto);
     const example = this.exampleRepository.create(createExampleDto);
     return await this.exampleRepository.save(example);
   }
@@ -32,7 +48,6 @@ export default class ExampleService {
     id: string,
     updateExampleDto: UpdateExampleDto,
   ): Promise<Example> {
-    await validateOrReject(updateExampleDto);
     const example = await this.findOne(id);
     Object.assign(example, updateExampleDto);
     return await this.exampleRepository.save(example);
@@ -41,5 +56,38 @@ export default class ExampleService {
   async remove(id: string): Promise<void> {
     const example = await this.findOne(id);
     await this.exampleRepository.remove(example);
+  }
+
+  async solveTestQuestion(
+    dto: SolveTestQuestionDto,
+  ): Promise<SolveTestQuestionResponseDto> {
+    const pattern = await this.patternTemplateService.findOne(
+      dto.patternTemplateId,
+    );
+    const example = await this.findOne(dto.exampleId);
+    const test = await this.create({
+      content: dto.testContent,
+      type: ExampleType.TEST,
+    });
+    const result = await this.aiService.solveTestQuestion(
+      pattern.entities,
+      pattern.relations,
+      example.content,
+      test.content,
+    );
+    const instance = await this.patternInstanceService.create({
+      entities: result.result.entities,
+      exampleId: example.id,
+      name: '',
+      patternTemplateId: pattern.id,
+      relations: result.result.relations,
+      steps: result.result.steps,
+    });
+    return {
+      answer: result.answer,
+      patternInstanceId: instance.id,
+      result: result.result,
+      testExampleId: example.id,
+    };
   }
 }

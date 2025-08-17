@@ -6,6 +6,7 @@ import { DatabaseModule } from './database/database.module';
 import { CourseModule } from './course/course.module';
 import { PatternModule } from './pattern/pattern.module';
 import { ExampleModule } from './example/example.module';
+import { AiModule } from './ai/ai.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { ExampleModule } from './example/example.module';
     CourseModule,
     PatternModule,
     ExampleModule,
+    AiModule,
   ],
   controllers: [AppController],
   providers: [AppService],

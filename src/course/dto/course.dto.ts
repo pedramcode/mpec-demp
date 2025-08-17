@@ -1,4 +1,4 @@
-import { IsString, IsOptional } from 'class-validator';
+import { IsString, IsOptional, IsObject } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class CreateCourseDto {
@@ -21,4 +21,18 @@ export class UpdateCourseDto {
   @IsOptional()
   @IsString()
   content?: string;
+}
+
+export class ExtractCourseResponseDto {
+  @ApiProperty()
+  @IsString()
+  courseId: string;
+
+  @ApiProperty()
+  @IsString()
+  patternId: string;
+
+  @ApiProperty()
+  @IsObject()
+  result: object;
 }
