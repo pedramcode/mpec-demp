@@ -85,10 +85,12 @@ export default class ExampleService {
       relations: result.result.relations,
       steps: result.result.steps,
     });
+    // calculate example or get it from API to see it's correct
+    const isCorrect = true;
     const answer = await this.answerService.create({
       answerText: result.answer,
       exampleId: example.id,
-      isCorrect: true, // ?
+      isCorrect: isCorrect,
       patternInstanceId: instance.id,
     });
     return {
