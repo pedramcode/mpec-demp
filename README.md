@@ -2,6 +2,13 @@
 
 A **Mathematical Proof Explanatory Chain** service for demo.
 
+## Dependencies
+
+* **@nestjs/swagger** – Generates OpenAPI (Swagger) documentation for all REST APIs, making endpoints self-describing and testable.
+* **class-validator** – Declarative validation of request DTOs (e.g., ensuring non-empty strings, valid UUIDs, enums).
+* **typeorm** – Object-relational mapper (ORM) for PostgreSQL, handling entities, migrations, and database queries in a TypeScript-friendly way.
+* **winston** – A versatile logging library supporting multiple transports (console, file, JSON).
+
 ## How to run
 
 Create a .env file at root with following content (values are sample):
