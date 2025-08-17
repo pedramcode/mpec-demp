@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
 import { Example } from '../entities/example.entity';
-import { EXAMPLE_REPOSITORY } from '../tokens';
+import { EXAMPLE_REPOSITORY } from 'src/tokens';
 
 export const exampleProviders = [
   {

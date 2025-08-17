@@ -1,5 +1,4 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
-import { PATTERNINSTANCE_REPOSITORY } from '../tokens';
 import { Repository } from 'typeorm';
 import { PatternInstance } from '../entities/patternInstance.entity';
 import {
@@ -7,6 +6,7 @@ import {
   UpdatePatternInstanceDto,
 } from '../dto/patternInstance.dto';
 import { validateOrReject } from 'class-validator';
+import { PATTERNINSTANCE_REPOSITORY } from 'src/tokens';
 
 @Injectable()
 export default class PatternInstanceService {

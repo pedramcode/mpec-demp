@@ -1,5 +1,4 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
-import { PATTERNTEMPLATE_REPOSITORY } from '../tokens';
 import { Repository } from 'typeorm';
 import { PatternTemplate } from '../entities/patternTemplate.entity';
 import {
@@ -7,10 +6,12 @@ import {
   UpdatePatternTemplateDto,
 } from '../dto/patternTemplate.dto';
 import { validateOrReject } from 'class-validator';
+import { PATTERNTEMPLATE_REPOSITORY } from 'src/tokens';
 
 @Injectable()
 export default class PatternTemplateService {
   constructor(
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     @Inject(PATTERNTEMPLATE_REPOSITORY)
     private readonly patternTemplateRepository: Repository<PatternTemplate>,
   ) {}

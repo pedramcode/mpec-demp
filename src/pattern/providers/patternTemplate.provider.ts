@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
 import { PatternTemplate } from '../entities/patternTemplate.entity';
-import { PATTERNTEMPLATE_REPOSITORY } from '../tokens';
+import { PATTERNTEMPLATE_REPOSITORY } from 'src/tokens';
 
 export const patternTemplateProviders = [
   {

@@ -1,9 +1,9 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
-import { COURSE_REPOSITORY } from '../tokens';
 import { Repository } from 'typeorm';
-import { Course } from '../entities/course.entity';
-import { CreateCourseDto, UpdateCourseDto } from '../dto/course.dto';
 import { validateOrReject } from 'class-validator';
+import { COURSE_REPOSITORY } from 'src/tokens';
+import { Course } from './entities/course.entity';
+import { CreateCourseDto, UpdateCourseDto } from './dto/course.dto';
 
 @Injectable()
 export default class CourseService {

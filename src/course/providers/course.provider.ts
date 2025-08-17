@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
 import { Course } from '../entities/course.entity';
-import { COURSE_REPOSITORY } from '../tokens';
+import { COURSE_REPOSITORY } from 'src/tokens';
 
 export const courseProviders = [
   {

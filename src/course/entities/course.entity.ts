@@ -1,6 +1,6 @@
 import { BaseEntity } from 'src/database/baseEntity';
+import { PatternTemplate } from 'src/pattern/entities/patternTemplate.entity';
 import { Column, Entity, OneToMany } from 'typeorm';
-import { PatternTemplate } from './patternTemplate.entity';
 
 @Entity()
 export class Course extends BaseEntity {

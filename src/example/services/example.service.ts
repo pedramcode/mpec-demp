@@ -1,9 +1,9 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
-import { EXAMPLE_REPOSITORY } from '../tokens';
 import { Repository } from 'typeorm';
 import { Example } from '../entities/example.entity';
 import { CreateExampleDto, UpdateExampleDto } from '../dto/example.dto';
 import { validateOrReject } from 'class-validator';
+import { EXAMPLE_REPOSITORY } from 'src/tokens';
 
 @Injectable()
 export default class ExampleService {

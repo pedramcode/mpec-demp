@@ -1,8 +1,8 @@
 import { BaseEntity } from 'src/database/baseEntity';
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { PatternTemplate } from './patternTemplate.entity';
-import { Example } from './example.entity';
-import { Answer } from './answer.entity';
+import { Example } from 'src/example/entities/example.entity';
+import { Answer } from 'src/example/entities/answer.entity';
 
 @Entity()
 export class PatternInstance extends BaseEntity {

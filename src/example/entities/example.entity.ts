@@ -1,7 +1,7 @@
 import { BaseEntity } from 'src/database/baseEntity';
 import { Column, Entity, OneToMany } from 'typeorm';
-import { PatternInstance } from './patternInstance.entity';
 import { Answer } from './answer.entity';
+import { PatternInstance } from 'src/pattern/entities/patternInstance.entity';
 
 export enum ExampleType {
   EXAMPLE = 'example',
