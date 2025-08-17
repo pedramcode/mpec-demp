@@ -6,7 +6,11 @@ import { DatabaseModule } from './database/database.module';
 import { MpecModule } from './mpec/mpec.module';
 
 @Module({
-  imports: [ConfigModule.forRoot({ isGlobal: true }), DatabaseModule, MpecModule],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    DatabaseModule,
+    MpecModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
