@@ -45,7 +45,11 @@ export class SolveTestQuestionResponseDto {
 
   @ApiProperty()
   @IsString()
-  answer: string;
+  answerText: string;
+
+  @ApiProperty()
+  @IsString()
+  answerId: string;
 
   @ApiProperty()
   @IsString()

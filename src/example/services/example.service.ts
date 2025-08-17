@@ -16,6 +16,7 @@ import { EXAMPLE_REPOSITORY } from 'src/tokens';
 import PatternTemplateService from 'src/pattern/services/patternTemplate.service';
 import { AiService } from 'src/ai/ai.service';
 import PatternInstanceService from 'src/pattern/services/patternInstance.service';
+import AnswerService from './answer.service';
 
 @Injectable()
 export default class ExampleService {
@@ -27,6 +28,7 @@ export default class ExampleService {
     @Inject(forwardRef(() => PatternInstanceService))
     private readonly patternInstanceService: PatternInstanceService,
     private readonly aiService: AiService,
+    private readonly answerService: AnswerService,
   ) {}
 
   async create(createExampleDto: CreateExampleDto): Promise<Example> {
@@ -83,8 +85,15 @@ export default class ExampleService {
       relations: result.result.relations,
       steps: result.result.steps,
     });
+    const answer = await this.answerService.create({
+      answerText: result.answer,
+      exampleId: example.id,
+      isCorrect: true, // ?
+      patternInstanceId: instance.id,
+    });
     return {
-      answer: result.answer,
+      answerText: result.answer,
+      answerId: answer.id,
       patternInstanceId: instance.id,
       result: result.result,
       testExampleId: example.id,
