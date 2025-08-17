@@ -36,6 +36,8 @@ Then run following command:
 docker compose up --build
 ```
 
+NOTE: Swagger documentation is at `/docs` end-point
+
 ## ERD
 
 ![ERD image](./ERDiagram.png)
