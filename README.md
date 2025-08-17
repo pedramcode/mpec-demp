@@ -11,7 +11,7 @@ A **Mathematical Proof Explanatory Chain** service for demo.
 
 ## How to run
 
-Create a .env file at root with following content (values are sample):
+Create a `.env` file at root with following content (values are sample):
 
 ```ENV
 # ========== Docker compose requirements ==========
