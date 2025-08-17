@@ -38,4 +38,4 @@ docker compose up --build
 
 ## ERD
 
-![ERD](./erd.png)
+![ERD image](./erd.png)
